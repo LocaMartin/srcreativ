@@ -1,0 +1,188 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-overlay: var(--overlay);
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.16 0.004 60);
+  --foreground: oklch(0.95 0.012 80);
+  --card: oklch(0.2 0.005 60);
+  --card-foreground: oklch(0.95 0.012 80);
+  --popover: oklch(0.2 0.005 60);
+  --popover-foreground: oklch(0.95 0.012 80);
+  --primary: oklch(0.8 0.09 80);
+  --primary-foreground: oklch(0.16 0.004 60);
+  --secondary: oklch(0.24 0.006 60);
+  --secondary-foreground: oklch(0.95 0.012 80);
+  --muted: oklch(0.24 0.006 60);
+  --muted-foreground: oklch(0.7 0.015 75);
+  --accent: oklch(0.8 0.09 80);
+  --accent-foreground: oklch(0.16 0.004 60);
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.95 0.012 80 / 12%);
+  --input: oklch(0.95 0.012 80 / 18%);
+  --ring: oklch(0.8 0.09 80);
+  --chart-1: oklch(0.8 0.09 80);
+  --chart-2: oklch(0.6 0.05 70);
+  --chart-3: oklch(0.5 0.03 60);
+  --chart-4: oklch(0.7 0.07 75);
+  --chart-5: oklch(0.9 0.04 85);
+  --sidebar: oklch(0.2 0.005 60);
+  --sidebar-foreground: oklch(0.95 0.012 80);
+  --sidebar-primary: oklch(0.8 0.09 80);
+  --sidebar-primary-foreground: oklch(0.16 0.004 60);
+  --sidebar-accent: oklch(0.24 0.006 60);
+  --sidebar-accent-foreground: oklch(0.95 0.012 80);
+  --sidebar-border: oklch(0.95 0.012 80 / 12%);
+  --sidebar-ring: oklch(0.8 0.09 80);
+  --overlay: oklch(0.12 0.004 60);
+  --gradient-gold: linear-gradient(
+    120deg,
+    oklch(0.86 0.08 85),
+    oklch(0.72 0.1 70)
+  );
+  --shadow-gold: 0 20px 50px -20px oklch(0.8 0.09 80 / 45%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Fade every major block into the page background instead of drawing hard rules
+   between sections. The Artist section established this soft cinematic handoff. */
+@layer components {
+  .section-mask {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-block-width: 0 !important;
+    box-shadow:
+      inset 0 40px 56px -54px rgb(0 0 0 / 0.9),
+      inset 0 -40px 56px -54px rgb(0 0 0 / 0.9);
+  }
+
+  .section-mask::before,
+  .section-mask::after {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    left: 0;
+    height: 4.5rem;
+    content: "";
+    pointer-events: none;
+  }
+
+  .section-mask::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--background), transparent);
+  }
+
+  .section-mask::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--background), transparent);
+  }
+
+  .section-mask > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+@utility text-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility bg-gold {
+  background: var(--gradient-gold);
+}
+@utility shadow-gold {
+  box-shadow: var(--shadow-gold);
+}
+@utility eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--primary);
+}

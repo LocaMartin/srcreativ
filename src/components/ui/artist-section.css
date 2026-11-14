@@ -1,0 +1,28 @@
+.artist-section {
+  padding-block: 120px 125px;
+  background: #171513;
+  color: #eee9e0;
+}
+.artist-section__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(42px, 8vw, 110px);
+  width: min(1160px, 84%);
+  margin-inline: auto;
+}
+.artist-section__image-wrap { position: relative; height: 545px; }
+.artist-section__image-wrap::before { position: absolute; z-index: 1; inset: 14px -14px -14px 14px; border: 1px solid #746345; content: ""; }
+.artist-section__image-wrap img { position: relative; z-index: 2; width: 100%; height: 100%; object-fit: cover; object-position: center 38%; filter: saturate(.8); }
+.artist-section__image-wrap .artist-section__photographer { position: absolute; z-index: 4; right: -74px; bottom: -34px; width: 42%; height: 48%; border: 7px solid #171513; object-position: center top; filter: saturate(.78); box-shadow: 0 18px 45px rgba(0,0,0,.35); }
+.artist-section__caption { position: absolute; z-index: 3; bottom: 19px; left: 20px; color: white; font-size: 8px; letter-spacing: .15em; }
+.artist-section__copy .artist-section__eyebrow { margin: 0 0 18px; color: #c8ae81; font-size: 9px; font-weight: 500; letter-spacing: .23em; line-height: 1.5; text-transform: uppercase; }
+.artist-section__copy h2 { margin: 0 0 22px; font-size: clamp(38px, 4.1vw, 54px); font-weight: 400; letter-spacing: -.065em; line-height: 1.08; }
+.artist-section__copy h2 em { color: #d5c3a0; font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+.artist-section__lead { margin: 0 0 16px; color: #ded7ca; font-family: Georgia, serif; font-size: 17px; line-height: 1.65; }
+.artist-section__body { margin: 0 0 13px; color: #aaa39a; font-size: 11px; line-height: 1.9; }
+.artist-section__link { display: inline-flex; align-items: center; gap: 12px; margin-top: 14px; border-bottom: 1px solid #8d7858; color: #d8c49c; padding-bottom: 8px; font-size: 9px; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; }
+.artist-section__signature { margin-top: 28px; color: #aaa39a; font-family: Georgia, serif; font-size: 13px; font-style: italic; }
+.artist-section__signature span { display: block; margin-top: 4px; color: #d8c49c; font-size: 25px; }
+@media (max-width: 800px) { .artist-section__layout { width: 88%; gap: 42px; }.artist-section__image-wrap { height: 465px; }.artist-section__image-wrap .artist-section__photographer { right: -28px; bottom: -24px; width: 37%; height: 43%; } }
+@media (max-width: 600px) { .artist-section { padding-block: 80px; }.artist-section__layout { grid-template-columns: 1fr; width: 86%; gap: 42px; }.artist-section__image-wrap { height: 390px; margin-right: 10px; }.artist-section__image-wrap .artist-section__photographer { right: -12px; bottom: -18px; width: 40%; height: 42%; border-width: 5px; }.artist-section__copy h2 { font-size: clamp(38px, 10vw, 49px); }.artist-section__copy h2 br { display: none; } }
